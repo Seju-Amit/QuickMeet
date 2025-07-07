@@ -8,8 +8,9 @@ import server from "../environment";
 export const AuthContext = createContext({});
 
 const client = axios.create({
-    baseURL: `${server}/api/v1/users`;
-    // baseURL: "http://localhost:8000/api/v1/users";
+    baseURL: `${server}/api/v1/users`
+    // baseURL: "http://localhost:8000/api/v1/users"
+    
 })
 
 
@@ -59,39 +60,35 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    // const getHistoryOfUser = async () => {
-    //     try {
-    //         let request = await client.get("/get_all_activity", {
-    //             params: {
-    //                 token: localStorage.getItem("token")
-    //             }
-    //         });
-    //         return request.data
-    //     } catch
-    //      (err) {
-    //         throw err;
-    //     }
-    // }
+    const getHistoryOfUser = async () => {
+        try {
+            let request = await client.get("/get_all_activity", {
+                params: {
+                    token: localStorage.getItem("token")
+                }
+            });
+            return request.data
+        } catch
+         (err) {
+            throw err;
+        }
+    }
 
-    // const addToUserHistory = async (meetingCode) => {
-    //     try {
-    //         let request = await client.post("/add_to_activity", {
-    //             token: localStorage.getItem("token"),
-    //             meeting_code: meetingCode
-    //         });
-    //         return request
-    //     } catch (e) {
-    //         throw e;
-    //     }
-    // }
+    const addToUserHistory = async (meetingCode) => {
+        try {
+            let request = await client.post("/add_to_activity", {
+                token: localStorage.getItem("token"),
+                meeting_code: meetingCode
+            });
+            return request
+        } catch (e) {
+            throw e;
+        }
+    }
 
-
-    // const data = {
-    //     userData, setUserData, addToUserHistory, getHistoryOfUser, handleRegister, handleLogin
-    // }
 
     const data = {
-        userData, setUserData, handleRegister, handleLogin
+        userData, setUserData, addToUserHistory, getHistoryOfUser, handleRegister, handleLogin
     }
 
     return (
