@@ -2,9 +2,10 @@ import express from "express";
 import { createServer } from "node:http";
 
 import { Server } from "socket.io";
-import dotenv from "dotenv";
-dotenv.config();
-const { MONGO_URL, PORT } = process.env;
+// import dotenv from "dotenv";
+// require('dotenv').config();
+const PORT = process.env.PORT || 8000;
+const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/quickmeet";
 
 import mongoose from "mongoose";
 import { connectToSocket } from "./controllers/socketManager.js";
@@ -23,18 +24,21 @@ app.use(express.urlencoded({ limit: "40kb", extended: true }));
 
 app.use("/api/v1/users", userRoutes);
 
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+
 const start = async () => {
-  app.set("mongo_user");
+  // app.set("mongo_user");
   const connectionDb = await mongoose
-    .connect(MONGO_URL, {
-      useNewUrlParser: true,
-    })
-    .then(() => console.log("MongoDB is  connected successfully"))
+    .connect("mongodb+srv://amitseju04:amitseju100@quickmeetcluster.nl00clt.mongodb.net/")
     .catch((err) => console.error(err));
 
+  console.log("MongoDB is  connected successfully");
+  console.log(`MONGO Connected DB NAME: ${connectionDb.connection.name}`);
   console.log(`MONGO Connected DB HOST: ${connectionDb.connection.host}`);
   server.listen(app.get("port"), () => {
-    console.log("LISTENIN ON PORT 8000");
+    console.log("SERVER IS LISTENIN ON PORT 8000");
   });
 };
 
