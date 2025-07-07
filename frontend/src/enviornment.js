@@ -1,6 +1,6 @@
 let IS_PROD = true;
 const server = IS_PROD ?
-    "https://quickmeet-cnl2.onrender.com" :
+    "https://quickmeetbackend-mfav.onrender.com" :
 
     "http://localhost:8000"
 

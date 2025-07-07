@@ -2,10 +2,11 @@ import express from "express";
 import { createServer } from "node:http";
 
 import { Server } from "socket.io";
+
 // import dotenv from "dotenv";
 // require('dotenv').config();
-const PORT = process.env.PORT || 8000;
-const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/quickmeet";
+// const PORT = process.env.PORT || 8000;
+// const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/quickmeet";
 
 import mongoose from "mongoose";
 import { connectToSocket } from "./controllers/socketManager.js";
@@ -29,7 +30,7 @@ app.use("/api/v1/users", userRoutes);
 // });
 
 const start = async () => {
-  // app.set("mongo_user");
+  app.set("mongo_user");
   const connectionDb = await mongoose
     .connect("mongodb+srv://amitseju04:amitseju100@quickmeetcluster.nl00clt.mongodb.net/")
     .catch((err) => console.error(err));
