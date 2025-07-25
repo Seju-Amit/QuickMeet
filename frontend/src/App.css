@@ -5,6 +5,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
+  overflow-x: hidden;
 }
 
 .landingPageContainer nav {
@@ -13,7 +14,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  flex-wrap: wrap;
+  position: relative;
 }
 
 .landingPageContainer nav h2 {
@@ -25,7 +27,50 @@
   display: flex;
   gap: 1.6rem;
   cursor: pointer;
+  flex-wrap: wrap;
+}
 
+/* Mobile menu for navbar - improved */
+.mobileMenuButton {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 100;
+}
+
+@media (max-width: 768px) {
+  .mobileMenuButton {
+    display: block;
+  }
+  
+  .landingPageContainer nav .navlist {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    gap: 1rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .landingPageContainer nav .navlist.open {
+    display: flex;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
 
 .landingMainContainer {
@@ -34,13 +79,16 @@
   padding-inline: 3rem;
   height: 80vh;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-.landingMainContainer>div:nth-child(1) {
+.landingMainContainer > div:nth-child(1) {
   font-size: 2.2rem;
+  flex: 1;
+  min-width: 300px;
 }
 
-.landingMainContainer>div:nth-child(1) div[role='button'] {
+.landingMainContainer > div:nth-child(1) div[role='button'] {
   background: #D97500;
   width: fit-content;
   padding: 1rem;
@@ -48,49 +96,235 @@
   margin-top: 1.9rem;
 }
 
-.landingMainContainer>div:nth-child(1) div[role='button'] a {
+.landingMainContainer > div:nth-child(1) div[role='button'] a {
   text-decoration: none;
   color: white;
   font-size: 1.7rem;
 }
 
-.landingMainContainer>div:nth-child(2) img {
-  height: 70vh;
+.landingMainContainer > div:nth-child(2) img {
+  height: auto;
+  max-height: 70vh;
   width: auto;
+  max-width: 100%;
 }
 
+@media (max-width: 768px) {
+  .landingMainContainer {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 2rem;
+    height: auto;
+  }
+  
+  .landingMainContainer > div:nth-child(1) {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  
+  .landingMainContainer > div:nth-child(1) div[role='button'] {
+    margin: 1.5rem auto;
+  }
+  
+  .landingMainContainer > div:nth-child(2) img {
+    max-height: 50vh;
+  }
+}
+
+/* Home page navbar responsive styles */
 .navBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-inline: 20px;
   text-align: center;
-
+  flex-wrap: wrap;
+  gap: 10px;
+  position: relative;
 }
+
+.navBar .mobileMenuButton {
+  display: none;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navBar .mobileMenuButton {
+    display: block;
+  }
+  
+  .navBar > div:nth-child(2) {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    gap: 1rem;
+    background-color: rgba(246, 203, 213, 0.95);
+    border-radius: 8px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .navBar > div:nth-child(2).open {
+    display: flex;
+  }
+}
+
 .meetContainer {
   display: flex;
   padding-inline: 20px;
   height: 80vh;
   gap: 10vw;
   justify-content: center;
+  flex-wrap: wrap;
 }
-
-
 
 .leftPanel {
   height: 100%;
   display: flex;
   align-items: center;
-
+  flex: 1;
+  min-width: 300px;
 }
 
 .rightPanel {
   display: flex;
   align-items: center;
+  flex: 1;
+  min-width: 300px;
+  justify-content: center;
 }
 
 .rightPanel > img {
-  width: 30vw;
+  width: 100%;
+  max-width: 30vw;
   height: auto;
   border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  .meetContainer {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+  
+  .leftPanel, .rightPanel {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .rightPanel > img {
+    max-width: 80vw;
+  }
+}
+
+/* Authentication page responsive styles */
+.auth-image-container {
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 600px) {
+  .auth-image-container {
+    margin: 20px auto !important;
+    height: 200px !important;
+    background-size: contain !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .navBar {
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .navBar > div {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.meetContainer {
+  display: flex;
+  padding-inline: 20px;
+  height: 80vh;
+  gap: 10vw;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.leftPanel {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 300px;
+}
+
+.rightPanel {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 300px;
+  justify-content: center;
+}
+
+.rightPanel > img {
+  width: 100%;
+  max-width: 30vw;
+  height: auto;
+  border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  .meetContainer {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+  
+  .leftPanel, .rightPanel {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .rightPanel > img {
+    max-width: 80vw;
+  }
+}
+
+/* Mobile menu for navbar */
+.mobileMenuButton {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobileMenuButton {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+  
+  .navlist {
+    display: none !important;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .navlist.open {
+    display: flex !important;
+  }
 }
