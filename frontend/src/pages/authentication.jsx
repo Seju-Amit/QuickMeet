@@ -23,7 +23,7 @@ const defaultTheme = createTheme();
 
 export default function Authentication() {
 
-    
+
 
     const [username, setUsername] = React.useState();
     const [password, setPassword] = React.useState();
@@ -72,20 +72,52 @@ export default function Authentication() {
                 <CssBaseline />
                 <Grid
                     item
-                    xs={false}
+                    xs={12}
                     sm={4}
                     md={7}
+                    className="auth-image-container"
                     sx={{
-                        backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+                        backgroundImage: 'url("/background1.png")',
                         backgroundRepeat: 'no-repeat',
                         backgroundColor: (t) =>
                             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
+                        boxSizing: "borderBox",
+                        border: '2px solid #ccc',
+                        borderRadius: '20px',
+                        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
+                        margin: { xs: '20px auto', sm: '100px auto' },
+                        height: { xs: '300px', sm: 'auto' },
+                        maxWidth: { xs: '90%', sm: '100%' },
+                        transition: 'all 0.3s ease',
+                        color: '#fff',
+                        textAlign: 'center',
                     }}
                 />
-                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                <Grid 
+                    item 
+                    xs={12} 
+                    sm={8} 
+                    md={5} 
+                    component={Paper} 
+                    elevation={6} 
+                    square 
+                    sx={{
+                        backgroundImage: 'url("/login.png")', 
+                        backgroundRepeat: 'no-repeat', 
+                        backgroundColor: (t) =>
+                            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+                        backgroundSize: { xs: 'contain', sm: '520px 700px' },
+                        backgroundPosition: 'center',
+                        backdropFilter: "blur(60px)",
+                        borderRadius: { xs: '20px', sm: '0' },
+                        margin: { xs: '0 auto', sm: '0' },
+                        padding: { xs: '20px', sm: '0' },
+                        maxWidth: { xs: '100%', sm: '100%' },
+                    }}>
                     <Box
+
                         sx={{
                             my: 8,
                             mx: 4,
